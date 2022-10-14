@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Avalanche</title>
+</head>
+
+<div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+    <h1>{{msg}}</h1>
+<br> 
+<br>
+    <h4> Total Principal = ${{principal}}</h4>
+    <h4> Total Interest Payable = ${{totalinterest}}</h4>
+    <h4> Total Due = ${{due}}</h4>
+    <h4> Total Monthly Minimum Payment = ${{minpmt}}</h4>
+    <h4> Highest Interest Rate = {{intrt}}%</h4>
+    <h4> Cash Left in Budget, After Minimum Payments = ${{totalcashleft}}</h4>
+<br>
+<br>
+    <h3>To pay off most efficiently: </h3>
+<br>
+    <h4>First,</h4>
+    <h4> Pay the minimum monthly payment for all debts, except the one with the {{intrt}}% Interest Rate. For this debt, pay the minimum plus all cash left over in the budget (${{totalcashleft}}/mo).</h4>
+    <h4> You will have fully paid off this debt after {{term}} months.</h4>
+
+</div>
+<br>
+<div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+    <h4 class="my-4"> To go back to the last page, click the button below:</h4>
+    <button><a href="/debts">Back</a></button>
+</div>
+{% endblock %}

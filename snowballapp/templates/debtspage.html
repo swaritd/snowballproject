@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Avalanche</title>
+</head>
+
+<body>
+    <h1> Debt Repayment Calculator</h1>
+    <div class="container">
+      <!--Django Model Form-->
+      <h2 class="my-4">Enter a Debt Profile:</h2>
+      <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+              {{users_form}}
+              <button class="btn btn-primary my-4" type="submit">Add Debt</button>
+        </form>
+      <!--Django Model-->
+      <h2 class="my-4">Your Debt Profiles: </h2>
+      <div class="row">
+        {% for x in users %}
+        <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+          <div class="card h-100 p-4">
+            <h4>Debt Profile: </h4>
+            <p>Your available monthly budget is: ${{x.AvailableMonthlyBudget}}</p>
+            <p>Your debt principal is: ${{x.Principal}}</p>
+            <p>Your debt interest rate is: {{x.InterestRate}}%</p>
+            <p>Your debt minimum monthly payment is: ${{x.MinimumMonthlyPayment}}</p>
+          </div>
+        </div>
+        {% empty %}
+        <p>No debts added. </p>
+        {% endfor %}
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+        <h4 class="my-4"> Once you're done adding debts, click below to view repayment.</h4>
+        <button><a href="/repayments">Next</a></button>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+{% endblock %}
